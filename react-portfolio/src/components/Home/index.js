@@ -65,14 +65,14 @@ const Home = () => {
               idx={22}
             />
           </h1>
-          <h2>Software Developer / DotNet C#</h2>
+          <h2>Software Developer / DotNet C# / React</h2>
           <Link to="/contact" className="flat-button">
             CONTACT ME
           </Link>
         </div>
       </div>
 
-      <Loader type='pacman' />
+      <Loader type="pacman" />
     </>
   )
 }
