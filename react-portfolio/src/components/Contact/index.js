@@ -2,48 +2,53 @@ import React, { useEffect, useRef, useState } from 'react'
 import './index.scss'
 import AnimatedLetters from '../AnimatedLetters'
 import Loader from 'react-loaders'
-import emailjs from '@emailjs/browser'
+import emailjs from 'emailjs-com'
 
 const Contact = () => {
+  const [letterClass, setLetterClass] = useState('text-animate')
+  const form = useRef()
 
-    const [letterClass, setLetterClass] = useState('text-animate')
-    const form = useRef()
-    
-      useEffect(() => {
-        const timeoutId = setTimeout(() => {
-          setLetterClass('text-animate-hover')
-        }, 3000)
-    
-        return () => clearTimeout(timeoutId)
-      }, [])
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setLetterClass('text-animate-hover')
+    }, 3000)
 
-      const sendEmail = (e) => {
-        e.preventDefault()
-    
-        emailjs
-          .sendForm('gmail', 'template_YeJhZkgb', form.current, 'your-token')
-          .then(
-            () => {
-              alert('Message successfully sent!')
-              window.location.reload(false)
-            },
-            () => {
-              alert('Failed to send the message, please try again')
-            }
-          )
-      }
-    
+    return () => clearTimeout(timeoutId)
+  }, [])
+
+  const sendEmail = (e) => {
+    e.preventDefault()
+
+    emailjs
+      .sendForm(
+        'service_b0sr7rx',
+        'template_fg415d5',
+        form.current,
+        'oZmat7jLJpL_ERJQQ'
+      )
+      .then(
+        () => {
+          alert('Message successfully sent!')
+          window.location.reload(false)
+        },
+        () => {
+          alert('Failed to send the message, please try again')
+        }
+      )
+  }
 
   return (
     <>
-    <div className='container contact-page'>
-      <div className='text-zone'>
-        <h1>
-            <AnimatedLetters 
-            letterClass={letterClass}
-            strArr={['C','o','n','t','a','c','t',' ','m','e']} idx={15}/>
-        </h1>
-        <p>
+      <div className="container contact-page">
+        <div className="text-zone">
+          <h1>
+            <AnimatedLetters
+              letterClass={letterClass}
+              strArr={['C', 'o', 'n', 't', 'a', 'c', 't', ' ', 'm', 'e']}
+              idx={15}
+            />
+          </h1>
+          <p>
             I am interested in freelance opportunities - especially on ambitious
             or large projects. However, if you have any other requests or
             questions, don't hesitate to contact me using below form either.
@@ -83,9 +88,9 @@ const Contact = () => {
               </ul>
             </form>
           </div>
+        </div>
       </div>
-    </div>
-    <Loader type="pacman" />
+      <Loader type="pacman" />
     </>
   )
 }
